@@ -8,8 +8,9 @@ int main() {
     cin >> input;
     int totSpace = input - 1;
     //the leading up ones
-    for(int i = 0; i < input; i++){
+    for(int i = 0; i < input; i++){ 
         int numSpace = totSpace - i;
+        
         //These 2 give the leading characters
         for(int j = 0; j < numSpace; j++){
             cout<<" ";
