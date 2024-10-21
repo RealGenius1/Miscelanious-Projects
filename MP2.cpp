@@ -38,11 +38,15 @@ int main() {
     //the game loop
     while(!hasWon){
 
+        //an if check just so that it doesn't print the first time after I have the start check
         if (input != NULL){
             cout << endl <<"Now it is time for the player turn" << endl;
         }
+
         playerTurn();
+        
         cout << endl << "Now it is time for the computer turn" << endl;
+
         computerTurn();
     }
 
