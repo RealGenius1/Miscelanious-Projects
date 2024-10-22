@@ -43,11 +43,15 @@ int main()
         // an if check just so that it doesn't print the first time after I have the start check
         if (input != NULL)
         {
-            cout << endl
-                 << "Now it is time for the player turn" << endl;
+            cout << endl << "Now it is time for the player turn" << endl;
         }
 
         playerTurn();
+
+        //quick check, make sure computer doesn't get to play in case human won
+        if(hasWon){
+            break;
+        }
 
         cout << endl
              << "Now it is time for the computer turn" << endl;
