@@ -48,8 +48,9 @@ int main()
 
         playerTurn();
 
-        //quick check, make sure computer doesn't get to play in case human won
-        if(hasWon){
+        // quick check, make sure computer doesn't get to play in case human won
+        if (hasWon)
+        {
             break;
         }
 
