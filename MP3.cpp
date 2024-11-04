@@ -16,8 +16,8 @@ bool isLegalMove(char board[], int location);
 void placeMarkOnBoard(char board[], char playerMark, int location);
 void displayBoard(char board[]);
 void displayGameStats(int ties, int player1Score, int player2Score);
-void XFirstGame(char board[], string player1Name, string player2Name, int& ties, int& p1Wins, int& p2Wins);
-void OFirstGame(char board[], string player1Name, string player2Name, int& ties, int& p1Wins, int& p2Wins);
+void XFirstGame(char board[], string player1Name, string player2Name, int &ties, int &p1Wins, int &p2Wins);
+void OFirstGame(char board[], string player1Name, string player2Name, int &ties, int &p1Wins, int &p2Wins);
 bool hasLegalMove(char board[]);
 
 // grid size
@@ -44,19 +44,22 @@ int main()
 
     clearBoard(grid);
 
-    cout << "Greetings Professor Falken, would you like to play a game?" << endl << "Name of Player 1: ";
+    cout << "Greetings Professor Falken, would you like to play a game?" << endl
+         << "Name of Player 1: ";
     getline(cin, player1Name);
     cout << "Name of Player 2: ";
     getline(cin, player2Name);
 
-    while(true){
+    while (true)
+    {
         XFirstGame(grid, player1Name, player2Name, numTies, numPlayer1Win, numPlayer2Win);
         displayGameStats(numTies, numPlayer1Win, numPlayer2Win);
         cout << "Nice game Professor Falken, would you like to play again? (any input to play again, -1 to quit)";
         cin >> input1;
         cin.clear();
         cin.ignore();
-        if(input1 == -1){
+        if (input1 == -1)
+        {
             break;
         }
         clearBoard(grid);
@@ -67,13 +70,11 @@ int main()
         cin >> input1;
         cin.clear();
         cin.ignore();
-        if(input1 == -1){
+        if (input1 == -1)
+        {
             break;
         }
     }
-
-
-
 }
 
 /*
@@ -96,25 +97,32 @@ Function to check if there is a player has won the game by checking for 3 in a r
 */
 bool hasThreeInARow(char board[], char playerMark)
 {
-    //Check for diagonals
-    if (board[6] == board[4] && board[4] == board[2] && board[6] == playerMark){
-        return true;
-    } else if (board[0] == playerMark && board[0] == board[4] && board[4] == board[8]){
+    // Check for diagonals
+    if (board[6] == board[4] && board[4] == board[2] && board[6] == playerMark)
+    {
         return true;
     }
-    //check for up down (0,3,6) & (1,4,7) & (2,5,8)
-    for(int j = 0; j < 3; j++){
-        if(board[j] == playerMark && board[j] == board[j+3] && board[j+3] == board[j+6]){
+    else if (board[0] == playerMark && board[0] == board[4] && board[4] == board[8])
+    {
+        return true;
+    }
+    // check for up down (0,3,6) & (1,4,7) & (2,5,8)
+    for (int j = 0; j < 3; j++)
+    {
+        if (board[j] == playerMark && board[j] == board[j + 3] && board[j + 3] == board[j + 6])
+        {
             return true;
         }
     }
-    //check the lefts and rights (0,1,2) & (3,4,5) & (6,7,8)
-    for(int i = 0; i < 9; i += 3){
-        if(board[i] == playerMark && board[i] == board[i+1] && board[i+1] == board[i+2]){
+    // check the lefts and rights (0,1,2) & (3,4,5) & (6,7,8)
+    for (int i = 0; i < 9; i += 3)
+    {
+        if (board[i] == playerMark && board[i] == board[i + 1] && board[i + 1] == board[i + 2])
+        {
             return true;
         }
     }
-    //end condition
+    // end condition
     return false;
 }
 
@@ -154,9 +162,12 @@ Function that will check for a tie
 @param board the current game board to be checked
 @returns true if there is a legal move, false if the game is now tied
 */
-bool hasLegalMove(char board[]){
-    for(int i = 0; i < n; i++){
-        if(board[i] != X && board[i] != O){
+bool hasLegalMove(char board[])
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (board[i] != X && board[i] != O)
+        {
             return true;
         }
     }
@@ -180,11 +191,17 @@ Displays the game board for the players
 */
 void displayBoard(char board[])
 {
-	cout << endl << " " << board[6] << " | " << board[7] << " | " << board[8]
-    << endl << "---+---+---"
-	<< endl << " " << board[3] << " | " << board[4] << " | " << board[5]
-	<< endl << "---+---+---"
-	<< endl << " " << board[0] << " | " << board[1] << " | " << board[2] << endl << endl;
+    cout << endl
+         << " " << board[6] << " | " << board[7] << " | " << board[8]
+         << endl
+         << "---+---+---"
+         << endl
+         << " " << board[3] << " | " << board[4] << " | " << board[5]
+         << endl
+         << "---+---+---"
+         << endl
+         << " " << board[0] << " | " << board[1] << " | " << board[2] << endl
+         << endl;
 }
 
 /*
@@ -196,8 +213,8 @@ Displays the game stats for the players
 void displayGameStats(int ties, int player1Score, int player2Score)
 {
     cout << "The game has been tied: " << ties << " times" << endl
-        << "X has won: " << player1Score << " times" << endl
-        <<"O has won: " << player2Score << " times" << endl;
+         << "X has won: " << player1Score << " times" << endl
+         << "O has won: " << player2Score << " times" << endl;
 }
 
 /*
@@ -209,58 +226,69 @@ Function to handle a game when X places first
 @param p1Wins a reference to an integer storing the number of games player 1 has won this game session
 @param p2Wins a reference to an integer storing the number of games player 2 has won this game session
 */
-void XFirstGame(char board[], string player1Name, string player2Name, int& ties, int& p1Wins, int& p2Wins){
+void XFirstGame(char board[], string player1Name, string player2Name, int &ties, int &p1Wins, int &p2Wins)
+{
     int input;
     displayBoard(board);
-    cout << "Welcome to the game of tic-tac-toe, " << player1Name <<" will move first!" << endl;
-    while(true){
-        //Player 1's turn section
-        //Get the input of player 1, it's a loop to check for legal moves
-        do{
+    cout << "Welcome to the game of tic-tac-toe, " << player1Name << " will move first!" << endl;
+    while (true)
+    {
+        // Player 1's turn section
+        // Get the input of player 1, it's a loop to check for legal moves
+        do
+        {
             input = getPlayerInput(player1Name);
-            if(!isLegalMove(board,input)){
+            if (!isLegalMove(board, input))
+            {
                 cout << "Hey genius, that wasn't a legal move, let's try this again" << endl;
             }
-        }while(!isLegalMove(board,input));
+        } while (!isLegalMove(board, input));
 
-        placeMarkOnBoard(board,X,input);
+        placeMarkOnBoard(board, X, input);
 
         displayBoard(board);
-        if(hasThreeInARow(board,X)){
+        if (hasThreeInARow(board, X))
+        {
             cout << "CONGRATULATIONS! " << player1Name << " HAS WON THE GAME!!" << endl;
             p1Wins++;
             return;
         }
 
-        if(!hasLegalMove(board)){
-            cout << "TIE" << endl << "A strange game. It ends in a tie. The only winning move is not to play." 
-                << "How about a nice game of chess?" << endl;
+        if (!hasLegalMove(board))
+        {
+            cout << "TIE" << endl
+                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "How about a nice game of chess?" << endl;
             ties++;
             return;
         }
 
-
-        //Player 2's turn section
-        //Get the input of player 2, it's a loop to check for legal moves
-        do{
+        // Player 2's turn section
+        // Get the input of player 2, it's a loop to check for legal moves
+        do
+        {
             input = getPlayerInput(player2Name);
-            if(!isLegalMove(board,input)){
+            if (!isLegalMove(board, input))
+            {
                 cout << "Hey genius, that wasn't a legal move, let's try this again" << endl;
             }
-        }while(!isLegalMove(board,input));
+        } while (!isLegalMove(board, input));
 
-        placeMarkOnBoard(board,O,input);
+        placeMarkOnBoard(board, O, input);
 
         displayBoard(board);
-        if(hasThreeInARow(board,O)){
+        if (hasThreeInARow(board, O))
+        {
             cout << "CONGRATULATIONS! " << player2Name << " HAS WON THE GAME!!" << endl;
             p2Wins++;
             return;
         }
 
-        if(!hasLegalMove(board)){
-            cout << "TIE" << endl << "A strange game. It ends in a tie. The only winning move is not to play." 
-                << "How about a nice game of chess?" << endl;
+        if (!hasLegalMove(board))
+        {
+            cout << "TIE" << endl
+                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "How about a nice game of chess?" << endl;
             ties++;
             return;
         }
@@ -276,58 +304,69 @@ Function to handle a game when O places first
 @param p1Wins a reference to an integer storing the number of games player 1 has won this game session
 @param p2Wins a reference to an integer storing the number of games player 2 has won this game session
 */
-void OFirstGame(char board[], string player1Name, string player2Name, int& ties, int& p1Wins, int& p2Wins){
+void OFirstGame(char board[], string player1Name, string player2Name, int &ties, int &p1Wins, int &p2Wins)
+{
     int input;
     displayBoard(board);
     cout << "Welcome to the game of tic-tac-toe, " << player2Name << " will move first!" << endl;
-    while(true){
-        //Player 2's turn section
-        //Get the input of player 2, it's a loop to check for legal moves
-        do{
+    while (true)
+    {
+        // Player 2's turn section
+        // Get the input of player 2, it's a loop to check for legal moves
+        do
+        {
             input = getPlayerInput(player2Name);
-            if(!isLegalMove(board,input)){
+            if (!isLegalMove(board, input))
+            {
                 cout << "Hey genius, that wasn't a legal move, let's try this again" << endl;
             }
-        }while(!isLegalMove(board,input));
+        } while (!isLegalMove(board, input));
 
-        placeMarkOnBoard(board,O,input);
+        placeMarkOnBoard(board, O, input);
 
         displayBoard(board);
-        if(hasThreeInARow(board,O)){
+        if (hasThreeInARow(board, O))
+        {
             cout << "CONGRATULATIONS! " << player2Name << " HAS WON THE GAME!!" << endl;
             p2Wins++;
             return;
         }
 
-        if(!hasLegalMove(board)){
-            cout << "TIE" << endl << "A strange game. It ends in a tie. The only winning move is not to play." 
-                << "How about a nice game of chess?" << endl;
+        if (!hasLegalMove(board))
+        {
+            cout << "TIE" << endl
+                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "How about a nice game of chess?" << endl;
             ties++;
             return;
         }
 
-
-        //Player 1's turn section
-        //Get the input of player 1, it's a loop to check for legal moves
-        do{
+        // Player 1's turn section
+        // Get the input of player 1, it's a loop to check for legal moves
+        do
+        {
             input = getPlayerInput(player1Name);
-            if(!isLegalMove(board,input)){
+            if (!isLegalMove(board, input))
+            {
                 cout << "Hey genius, that wasn't a legal move, let's try this again" << endl;
             }
-        }while(!isLegalMove(board,input));
+        } while (!isLegalMove(board, input));
 
-        placeMarkOnBoard(board,X,input);
+        placeMarkOnBoard(board, X, input);
 
         displayBoard(board);
-        if(hasThreeInARow(board,X)){
+        if (hasThreeInARow(board, X))
+        {
             cout << "CONGRATULATIONS! " << player1Name << " HAS WON THE GAME!!" << endl;
             p1Wins++;
             return;
         }
 
-        if(!hasLegalMove(board)){
-            cout << "TIE" << endl << "A strange game. It ends in a tie. The only winning move is not to play." 
-                << "How about a nice game of chess?" << endl;
+        if (!hasLegalMove(board))
+        {
+            cout << "TIE" << endl
+                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "How about a nice game of chess?" << endl;
             ties++;
             return;
         }
