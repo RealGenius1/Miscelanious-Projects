@@ -13,9 +13,9 @@ int main(){
 }
 
 int count_words(string str){
-    int count = 0;
-    for(int i = 0; i < str.length(); i++){
-        isalpha(str[i]) ? count++ : count+=0;
+    int count = 1;
+    for(int i = 1; i < str.length(); i++){
+        count += (str[i] == ' ' && str[i-1] != ' ');
     }
     return count;
 }
