@@ -257,7 +257,7 @@ void XFirstGame(char board[], string player1Name, string player2Name, int &ties,
         if (!hasLegalMove(board))
         {
             cout << "TIE" << endl
-                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "A strange game. The only winning move is not to play."
                  << "How about a nice game of chess?" << endl;
             ties++;
             return;
@@ -287,7 +287,7 @@ void XFirstGame(char board[], string player1Name, string player2Name, int &ties,
         if (!hasLegalMove(board))
         {
             cout << "TIE" << endl
-                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "A strange game. The only winning move is not to play."
                  << "How about a nice game of chess?" << endl;
             ties++;
             return;
@@ -335,7 +335,7 @@ void OFirstGame(char board[], string player1Name, string player2Name, int &ties,
         if (!hasLegalMove(board))
         {
             cout << "TIE" << endl
-                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "A strange game. The only winning move is not to play."
                  << "How about a nice game of chess?" << endl;
             ties++;
             return;
@@ -365,7 +365,7 @@ void OFirstGame(char board[], string player1Name, string player2Name, int &ties,
         if (!hasLegalMove(board))
         {
             cout << "TIE" << endl
-                 << "A strange game. It ends in a tie. The only winning move is not to play."
+                 << "A strange game. The only winning move is not to play."
                  << "How about a nice game of chess?" << endl;
             ties++;
             return;
