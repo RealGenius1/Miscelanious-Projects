@@ -22,7 +22,6 @@ int partition(int A[], int p, int r){
 
 void quicksort(int A[], int p, int r){
     if(p<r){
-        cout << "p: " << p << "       r: " << r << endl;
         int q = partition(A,p,r);
         cout << "q: " << q <<"       A[q]: " << A[q] << endl;
         cout << "p: " << p << "      q-1: " << q-1 << endl;
